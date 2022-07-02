@@ -1,12 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<title>Bookworm Archive</title>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="./assets/style.css"/>
-<title></title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
+    <div class="block">
+        <section class="hero has-background-black">
+            <div class="hero-body">
+                <p class="title has-text-white">
+                    Bookworm Archive
+                </p>
+                <p class="subtitle has-text-grey">
+                    For all your bookworm needs!
+                </p>
+                <figure class="image is-128x128">
+                    <img class="is-rounded" src="https://static.vecteezy.com/system/resources/thumbnails/005/163/116/small/worm-glyph-icon-animal-free-vector.jpg">
+                </figure>
+            </div>
+        </section>
+    </div>
+    <div class="block">
+        <div class="container">
+            <div class="notification has-background-grey has-text-black">
+            Simply enter your favorite book and watch the magic happen!
+            </div>
+        </div>
+    </div>   
+    
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div id="search-section">
+                    <div class="notification">
+                        <h1 class="title is-size-4">Books recently searched...</h1>
+                        <ol>
+                            <li>Book 1</li>
+                            <li>Book 2</li>
+                            <li>Book 3</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="search-input">
+                    <div class="input-field">
+                        <input class="input" type="text" placeholder="Enter book here...">
+                    </div>
+                </div>
+                <button class="button is-black" id="submit" type="submit" name="action">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="block"></div>
+
+    <div class="container">
+        <div class="notification">
+            <h1 class="title is-3">Info about books</h1>
+            <p class="info-about-book">Author/date/info</p>
+        </div>
+    </div>
+
+    <div class="block"></div>
+
+    <div class="container">
+        <div class="notification">
+            <h1 class="title is-3">Reviews</h1>
+            <p class="reviews">Reviews on books</p>
+        </div>
+    </div>
+      
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
