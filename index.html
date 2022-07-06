@@ -4,7 +4,7 @@
 
 <title>Bookworm Archive</title>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="./assets/style.css"/>
+<!-- <link rel="stylesheet" type="text/css" href="./assets/style.css"/> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
@@ -48,7 +48,7 @@
             <div class="column">
                 <div class="search-input">
                     <div class="input-field">
-                        <input class="input" type="text" placeholder="Enter book here...">
+                        <input class="input" type="text" id="searchBar" placeholder="Enter book here...">
                     </div>
                 </div>
                 <button class="button is-black" id="submit" type="submit" name="action">Submit</button>
@@ -61,7 +61,7 @@
     <div class="container">
         <div class="notification">
             <h1 class="title is-3">Info about books</h1>
-            <p class="info-about-book">Author/date/info</p>
+            <p id="info-about-book"></p>
         </div>
     </div>
 
@@ -70,13 +70,13 @@
     <div class="container">
         <div class="notification">
             <h1 class="title is-3">Reviews</h1>
-            <p class="reviews">Reviews on books</p>
+            <p id="reviews">Reviews on books</p>
         </div>
     </div>
       
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="./assets/script.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
