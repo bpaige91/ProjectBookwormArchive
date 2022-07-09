@@ -33,6 +33,37 @@ function getDetails(request) {
           "<br> Number of Pages: " + dataArray.number_of_pages +
           "<br> OpenLibrary Link: <a href='" + dataArray.url + "'>" + dataArray.url + " </a>";
       });
+    
+    let url = "https://api.nytimes.com/svc/books/v3/reviews.json?isbn="+searchNumber+"&api-key=2pNGPGjw90mnBUF0kNd6zkEjG7aEY2bq";
+
+    let bookReview = document.getElementById("reviews");
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+        
+        console.log(data);
+
+        console.log(data.num_results);
+
+        if (data.num_results == 0){
+            console.log("work");
+            let a = document.createElement("a");        
+            a.innerHTML = "No NYT Review Found";
+            bookReview.appendChild(a);
+        }
+
+        else{
+            data.results.map(review => {
+                console.log(review.url);
+                let a = document.createElement("a");
+                a.setAttribute('href', review.url);        
+                a.innerHTML = review.url;
+                bookReview.appendChild(a);
+            })
+        }
+    })
+    
+    
   }
 
 
