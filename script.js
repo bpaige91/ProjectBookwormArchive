@@ -27,9 +27,39 @@ function getApi(request) {
       });
   }
 
-//  event listener function for the search bar submit button
+///  event listener function for the search bar submit button
   $("#submit").on("click", function(event) {
     var searchInput = $("#searchBar").val();
     event.preventDefault();
     getApi();
 });
+
+//Local storage to save previously searched books
+console.log(book);
+storedBooks = JSON.parse(localStorage.getItem("books"));
+
+if (storedBooka !== null) {
+book = storedBooks[0].name;
+window.onload = currentCall(books);
+};
+console.log(storedBooks);
+
+function renderList() {
+Object.values(storedBooks).forEach((value) => {
+  const $cityLi = $("<li>", { "class": "list-group-item" });
+  $bookLi.text(value.name);
+  $(".list-group").prepend($bookLi);
+  $("#refresh").hide();  
+}
+) 
+}
+if (storedBooks !== null) {
+renderList();
+}
+      //make an array to save in local storage and appear in list
+      const $bookLi = $("<li>", { "class": "list-group-item" });
+// turns the saved book array into a string
+      bookArray = JSON.parse(localStorage.getItem("books"));
+      if (bookArray === null) {
+          localStorage.setItem("books", JSON.stringify([bookObject]));
+      }
