@@ -1,31 +1,65 @@
-const libraryAPI = 'http://openlibrary.org/api/books?bibkeys=ISBN:0201558025,LCCN:93005405&jscmd=data&format=json'
 var log = document.getElementById("searchBar");
 var responseHeader = document.getElementById("responseText");
 var bookInfoDiv = document.getElementById("info-about-book");
+const searchAPI = 'http://openlibrary.org/search.json?title=the+lord+of+the+rings'
 
 // fetch function to retrieve data about a book from OpenLibrary API. Returns data as a multidimensional array, see docs for properties etc.
-function getApi(request) {
-    var searchString = 'http://openlibrary.org/api/books?bibkeys=ISBN:' + document.getElementById("searchBar").value + '&jscmd=data'
+function getDetails(request) {
+    var searchNumber = document.getElementById("searchBar").value;
+    var searchString = 'http://openlibrary.org/api/books?bibkeys=ISBN:' + searchNumber + '&jscmd=data&format=json'
+    var arrayIndex = 'ISBN:' + document.getElementById("searchBar").value;
     console.log(searchString);
-    fetch(libraryAPI)
+    fetch(searchString)
       .then(function (response) {
-        // Check the console first to see the response.status
         console.log(response.status);
-        // return API data as a json object
         return response.json();
       })
       .then(function (data) {
         console.log(data);
-        console.log(data["ISBN:0201558025"].cover.large);
-        console.log(data["ISBN:0201558025"].cover.medium);
-        console.log(data["ISBN:0201558025"].cover.small);
-        var dataArray = data["ISBN:0201558025"];
+        var dataArray = data[arrayIndex];
+        // variable declaration and for loop to pull all authors names from the array
+        var authorsList = "";
+        for (let i = 0; i < dataArray.authors.length; i++) {
+          var author = dataArray.authors[i].name;
+          if(i == 0) authorsList += author;
+          else authorsList += ", " + author;
+        }
+        // modifying the existing HTML with the information requested by the user
         bookInfoDiv.innerHTML = 
-          "Author(s): " + dataArray.by_statement +
+          "Title: " + dataArray.title +
+          "<br> Author(s): " + authorsList +
           "<br> Publisher: " + dataArray.publishers[0].name +
-          "<br> Publish Date: " + dataArray.publish_date;
+          "<br> Publish Date: " + dataArray.publish_date +
+          "<br> Number of Pages: " + dataArray.number_of_pages +
+          "<br> OpenLibrary Link: <a href='" + dataArray.url + "'>" + dataArray.url + " </a>";
       });
   }
+
+
+// fetch function to search a book by title instead of ISBN on OpenLibrary API
+function bookSearch(request) {
+  var searchString = document.getElementById("searchBar").value;
+  var searchQuery = encodeURIComponent(searchString);
+  var apiString = 'http://openlibrary.org/search.json?q=' + searchQuery + '&fields=*';
+  console.log(apiString);
+
+  fetch(searchAPI)
+  .then(function (response) {
+    console.log(response.status);
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  })
+}
+
+//  event listener function for the search bar submit button
+  $("#submit").on("click", function(event) {
+    var searchInput = $("#searchBar").val();
+    event.preventDefault();
+    getDetails();
+});
+
 
 ///  event listener function for the search bar submit button
   $("#submit").on("click", function(event) {
@@ -35,6 +69,7 @@ function getApi(request) {
 });
 
 //Local storage to save previously searched books
+
 console.log(book);
 storedBooks = JSON.parse(localStorage.getItem("books"));
 
@@ -62,4 +97,5 @@ renderList();
       bookArray = JSON.parse(localStorage.getItem("books"));
       if (bookArray === null) {
           localStorage.setItem("books", JSON.stringify([bookObject]));
+
       }
