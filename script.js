@@ -35,6 +35,7 @@ function getDetails(request) {
       });
   }
 
+
 // fetch function to search a book by title instead of ISBN on OpenLibrary API
 function bookSearch(request) {
   var searchString = document.getElementById("searchBar").value;
@@ -58,6 +59,16 @@ function bookSearch(request) {
     event.preventDefault();
     getDetails();
 });
+
+
+///  event listener function for the search bar submit button
+  $("#submit").on("click", function(event) {
+    var searchInput = $("#searchBar").val();
+    event.preventDefault();
+    getApi();
+});
+
+//Local storage to save previously searched books
 
 console.log(book);
 storedBooks = JSON.parse(localStorage.getItem("books"));
@@ -86,4 +97,5 @@ renderList();
       bookArray = JSON.parse(localStorage.getItem("books"));
       if (bookArray === null) {
           localStorage.setItem("books", JSON.stringify([bookObject]));
+
       }
