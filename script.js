@@ -37,6 +37,7 @@ function getDetails(request) {
     var isbn = document.getElementById("searchBar").value;      
     //url w/title for book review
     let url = "https://api.nytimes.com/svc/books/v3/reviews.json?isbn="+searchNumber+"&api-key=2pNGPGjw90mnBUF0kNd6zkEjG7aEY2bq";
+    document.getElementById("reviews").innerHTML = "";
     let bookReview = document.getElementById("reviews");
     fetch(url)
         .then(response => response.json())
