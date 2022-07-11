@@ -32,7 +32,7 @@ loadHistory();
 function getDetails(request) {
 
   var searchNumber = document.getElementById("searchBar").value;
-  var searchString = 'http://openlibrary.org/api/books?bibkeys=ISBN:' + searchNumber + '&jscmd=data&format=json'
+  var searchString = 'https://openlibrary.org/api/books?bibkeys=ISBN:' + searchNumber + '&jscmd=data&format=json'
   var arrayIndex = 'ISBN:' + document.getElementById("searchBar").value;
   var bookInfoText = document.getElementById("book-info-text");
   console.log(searchString);
