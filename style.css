@@ -8,3 +8,6 @@
     margin-bottom: auto!important;
     margin-right: 5px!important;
 }
+.input-field{
+    display:flex;
+}
