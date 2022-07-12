@@ -1,0 +1,10 @@
+#cover-image {
+    display: flex;
+    margin: auto;
+    width: 256px;
+    height: 100%;
+}
+#img-div {
+    margin-bottom: auto!important;
+    margin-right: 5px!important;
+}

@@ -53,12 +53,12 @@ function getDetails(request) {
       }
       // modifying the existing HTML with the information requested by the user
       bookInfoText.innerHTML =
-      '<br> <h1 class="title is-3">Info about books</h1>' +
+      '<br> <h2 class="title is-3">Info About Book</h2>' +
       "<br> Title: " + dataArray.title +
       "<br> Author(s): " + authorsList +
       "<br> Publisher: " + dataArray.publishers[0].name +
       "<br> Publish Date: " + dataArray.publish_date +
-      "<br> Number of Pages: " + dataArray.number_of_pages +
+      // "<br> Number of Pages: " + dataArray.number_of_pages +
       "<br> OpenLibrary Link: <a href='" + dataArray.url + "'>" + dataArray.url + " </a>";
 
       // adding the search info to the array used by localstorage
@@ -78,15 +78,16 @@ function getDetails(request) {
     console.log(data);
     // adding a 'p' element with summary text, and an 'img' element with a thumbnail picture
     var desc = document.createElement("p");
-    var descText = data.items[0].volumeInfo.description.split(".")
-    desc.innerHTML = "<br>" + descText[0] + ".";
+    // var descText = data.items[0].volumeInfo.description.split(".")
+    // desc.innerHTML = "<br>" + descText[0] + "." + descText[1] + ".";
+    desc.innerHTML = "<br>" + data.items[0].volumeInfo.description;
     bookInfoDiv.append(desc);
     var coverImg = document.createElement("img")
     var coverImgLink = data.items[0].volumeInfo.imageLinks.thumbnail
     coverImg.setAttribute("src", coverImgLink);
     coverImg.setAttribute("alt","Book cover Thumbnail");
-    coverImg.setAttribute("id","cover-image")
-    bookInfoDiv.prepend(coverImg);
+    coverImg.setAttribute("id","cover-image");
+    document.getElementById("img-div").prepend(coverImg);
   });
   getReview();
 }
@@ -145,6 +146,7 @@ function bookSearch(request) {
 $("#submit").on("click", function(event) {
   event.preventDefault();
   bookInfoDiv.innerHTML = '<p id="book-info-text"></p>'
+  document.getElementById("img-div").innerHTML = " "
   getDetails();
   loadHistory();
 });
