@@ -53,7 +53,7 @@ function getDetails(request) {
       }
       // modifying the existing HTML with the information requested by the user
       bookInfoText.innerHTML =
-      '<br> <h2 class="title is-3">Info About Book</h2>' +
+      '<h2 class="title is-3">Info About Book</h2>' +
       "<br> Title: " + dataArray.title +
       "<br> Author(s): " + authorsList +
       "<br> Publisher: " + dataArray.publishers[0].name +
